@@ -26,7 +26,7 @@ class AuthGuard implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         //Pengecekan hak akses
-        if (!session()->get('logged_in') && $request->uri->getPath() !== '/') {
+        if (!session()->get('Authorized') && $request->uri->getPath() !== '/') {
             return redirect()->to('/');
         }
     }

@@ -14,6 +14,7 @@ class SigninController extends BaseController
         return view('welcome_message', $data);
     }
 
+    // Penanganan proses masuk/login
     public function loginRules()
     {
         $validation = \Config\Services::validation();
@@ -44,16 +45,17 @@ class SigninController extends BaseController
         $data = $this->adminModel->where('email_admin', $email)->first();
 
         if ($data) {
-            if (password_verify($password, $data['password'])) {
+            if (password_verify($password, $data['kata_sandi'])) {
                 // Login berhasil, buat data sesi
                 session()->set([
                     'id_admin' => $data['id_admin'],
+                    'email_admin' => $data['email_admin'],
                     'nip_admin' => $data['nip_admin'],
                     'level_akun' => $data['level_akun'],
                     'instansi' => $data['instansi_admin'],
                     'nama_admin' => $data['nama_admin'],
                     'alamat_admin' => $data['alamat_admin'],
-                    'isLoggedIn' => true
+                    'Authorized' => true
                 ]);
 
                 return redirect()->to('admin/dashboard')->with('success', 'Login berhasil');
@@ -65,5 +67,12 @@ class SigninController extends BaseController
             // Email tidak ditemukan
             return redirect()->back()->withInput()->with('errors', 'Email tidak ditemukan');
         }
+    }
+
+    // Penanganan lupa kata sandi
+    public function lupaPassword()
+    {
+        $data['title'] = 'Helpdesk | Lupa Kata Sandi';
+        return view('lupa_password', $data);
     }
 }

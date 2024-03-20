@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="<?= base_url('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/dist/css/adminlte.min.css') ?>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <!-- Sweetalert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
 </head>
 
-<body class="hold-transition login-page" style="background-image: url(assets/sign_bg.jpg); background-size: cover;">
+<body class="hold-transition login-page" style="background-color: #B0D9B1;">
     <div class="login-box shadow">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
@@ -68,10 +69,7 @@
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
-                    <a href="forgot-password.html">Lupa kata sandi?</a>
-                </p>
-                <p class="mb-0">
-                    <a href="register.html" class="text-center">Daftar akun pegawai</a>
+                    <a href="lupa_password">Lupa kata sandi?</a>
                 </p>
             </div>
             <!-- /.card-body -->
@@ -85,14 +83,42 @@
     <script src="<?= base_url('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/dist/js/adminlte.min.js') ?>"></script>
-</body>
-<script>
-    var errorMessage = '<?= session()->getFlashdata('errors') ?>';
-    if (errorMessage) {
-        toastr.error(errorMessage);
-    }
-</script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek apakah ada pesan error
+            <?php if (session()->getFlashdata('errors')) : ?>
+                const errorMessage = <?= json_encode(session()->getFlashdata('errors')) ?>;
+                Swal.fire({
+                    position: 'top-end', // posisi di pojok kanan atas
+                    icon: 'error',
+                    toast: true,
+                    title: 'Gagal',
+                    text: errorMessage, // pesan error dari session
+                    showConfirmButton: false,
+                    timerProgressBar: true,
+                    timer: 3000 // pesan hilang setelah 3 detik
+                });
+            <?php endif; ?>
+
+            // Cek apakah ada pesan sukses
+            <?php if (session()->getFlashdata('success')) : ?>
+                const successMessage = <?= json_encode(session()->getFlashdata('success')) ?>;
+                Swal.fire({
+                    position: 'top-end', // posisi di pojok kanan atas
+                    icon: 'success',
+                    title: 'Sukses',
+                    text: successMessage, // pesan sukses dari session
+                    toast: true,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    timer: 3000 // pesan hilang setelah 3 detik
+                });
+            <?php endif; ?>
+        });
+    </script>
+
+</body>
 
 
 </html>
