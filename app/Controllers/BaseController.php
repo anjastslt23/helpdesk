@@ -8,6 +8,10 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+// Koneksi Database
+use App\Models\AdminModel;
+// Tambahan
+
 
 /**
  * Class BaseController
@@ -27,6 +31,8 @@ abstract class BaseController extends Controller
      * @var CLIRequest|IncomingRequest
      */
     protected $request;
+    protected $adminModel;
+    protected $session;
 
     /**
      * An array of helpers to be loaded automatically upon
@@ -54,5 +60,9 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+        $this->session = \Config\Services::session();
+        $this->session = session();
+        // 
+        $this->adminModel = new AdminModel();
     }
 }

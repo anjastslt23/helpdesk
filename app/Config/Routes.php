@@ -5,4 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+
+//  Fungsi Login/Masuk
+$routes->get('/', 'SigninController::index');
+$routes->post('initialize', 'SigninController::loginRules');
