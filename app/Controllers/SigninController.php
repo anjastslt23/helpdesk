@@ -58,7 +58,7 @@ class SigninController extends BaseController
                     'Authorized' => true
                 ]);
 
-                return redirect()->to('admin/dashboard')->with('success', 'Login berhasil');
+                return redirect()->to('admin/dashboard')->with('successLogin', 'Login berhasil');
             } else {
                 // Kata sandi salah
                 return redirect()->back()->withInput()->with('errors', 'Kata sandi salah');
@@ -74,5 +74,14 @@ class SigninController extends BaseController
     {
         $data['title'] = 'Helpdesk | Lupa Kata Sandi';
         return view('lupa_password', $data);
+    }
+
+    // Penanganan logout/keluar akun
+    public function logout()
+    {
+        // Hapus data session dan redirect ke halaman login
+        session_unset();
+        session()->destroy();
+        return redirect()->to('/');
     }
 }

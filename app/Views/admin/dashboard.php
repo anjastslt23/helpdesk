@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Header -->
+<title><?= $title ?></title>
+<?= view('admin/template/header') ?>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li id="realtime-clock" class="breadcrumb-item"></li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 
-<body>
-    <h1>Halo</h1>
-</body>
+    <!-- Main content -->
 
-</html>
+    <section class="content">
+
+        <div class="container-fluid">
+            <h1>ini pusat tampilan website</h1>
+        </div>
+
+    </section>
+</div>
+<!-- /.content-wrapper -->
+<!-- login sukses -->
+
+
+<?= view('admin/template/footer') ?>
