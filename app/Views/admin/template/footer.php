@@ -3,9 +3,9 @@
     <div class="float-right d-none d-sm-inline"></div>
     <!-- Default to the left -->
     <center>
-        <strong>Copyright &copy; 2023
-            <a href="#">&copy; 2023</a>.
-        </strong> All not rights.
+        <strong>
+            <a href="#">Copyright &copy; 2024 Pemerintahan Kabupaten Buleleng</a>
+        </strong>
     </center>
 </footer>
 
@@ -92,40 +92,5 @@
                 window.location.href = "<?= base_url('/logout') ?>";
             }
         })
-    }
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('.toggle-password').click(function() {
-            $(this).toggleClass('active');
-            var passwordInput = $('#password-input');
-            var passwordFieldType = passwordInput.attr('type');
-            if (passwordFieldType === 'password') {
-                passwordInput.attr('type', 'text');
-            } else {
-                passwordInput.attr('type', 'password');
-            }
-        });
-    });
-</script>
-<script>
-    // disable clicking on all elements
-    function disableClick() {
-        document.querySelectorAll('*').forEach(function(el) {
-            el.style.pointerEvents = 'none';
-        });
-    }
-
-    // enable clicking on link to change password
-    function enableClick() {
-        document.getElementById('change-password-link').style.pointerEvents = 'auto';
-    }
-
-    // check if warning message is present
-    var warningMessage = document.querySelector('.alert-warning');
-    if (warningMessage) {
-        disableClick();
-        enableClick();
     }
 </script>
