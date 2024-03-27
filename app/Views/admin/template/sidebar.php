@@ -27,14 +27,12 @@
 
             <!-- Sidebar -->
             <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
                         <?php
                         $levelAkun = session()->get('level_akun');
-                        $iconClass = ''; // Inisialisasi variabel untuk class ikon
-                        $badgeClass = 'badge-'; // Dasar class untuk badge
-
-                        // Tentukan ikon dan badge class berdasarkan level akun
+                        $iconClass = '';
+                        $badgeClass = 'badge-';
                         switch ($levelAkun) {
                             case 'Superadmin':
                                 $iconClass = 'fas fa-user-shield';
@@ -46,17 +44,42 @@
                                 break;
                         }
                         ?>
-
-                        <!-- Tampilkan ikon dan level akun dengan badge -->
                         <i class="<?= $iconClass ?>"></i>
                         <span class="badge <?= $badgeClass ?>"><?= ucwords($levelAkun) ?></span>
                     </div>
+                </div> -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="#" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <?php
+                        $levelAkun = session()->get('level_akun');
+                        $badgeClass = 'badge-'; // Dasar class untuk badge
+
+                        // Tentukan warna badge berdasarkan level akun
+                        switch ($levelAkun) {
+                            case 'Superadmin':
+                                $badgeClass .= 'danger';
+                                break;
+                            case 'Admin':
+                                $badgeClass .= 'warning';
+                                break;
+                            default:
+                                $badgeClass .= 'primary';
+                                break;
+                        }
+                        ?>
+
+                        <!-- Tampilkan badge dengan warna sesuai level akun -->
+                        <a href="#" class="d-block">
+                            <span class="badge <?= $badgeClass ?>"><?= ucwords($levelAkun) ?></span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-                        <!-- Dashboard menu item -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/dashboard') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-house"></i>
@@ -65,7 +88,6 @@
                                 </p>
                             </a>
                         </li>
-                        <!-- Pengguna menu item -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/pengguna') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
@@ -74,7 +96,6 @@
                                 </p>
                             </a>
                         </li>
-                        <!-- Keluar menu item -->
                         <li class="nav-item">
                             <a href="<?= base_url('admin/myinfo') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -83,7 +104,6 @@
                                 </p>
                             </a>
                         </li>
-                        <!-- Keluar menu item -->
                         <li class="nav-item">
                             <?php if (session()->get('Authorized')) : ?>
                                 <a href="javascript:void(0);" class="nav-link" onclick="logoutConfirmation();">
@@ -94,8 +114,8 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- /.sidebar-menu -->
             </div>
+
             <!-- /.sidebar -->
         </aside>
 

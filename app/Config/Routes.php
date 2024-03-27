@@ -17,7 +17,7 @@ $routes->post('initialize', 'SigninController::loginRules');
 $routes->group('admin', ['filter' => 'authGuard'], function ($routes) {
 
     $routes->group('', function ($routes) {
-        $routes->get('dashboard', 'Admin\DashboardControl::index');
+        $routes->get('dashboard', 'Admin\DashboardController::index');
     });
 });
 
